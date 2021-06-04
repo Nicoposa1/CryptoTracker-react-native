@@ -1,8 +1,15 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Platform } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  StyleSheet,
+  Platform,
+} from "react-native";
 import Colors from "../../res/colors";
 
-const CoinsItem = ({ item }) => {
+const CoinsItem = ({ item, onPress }) => {
   getImageArrow = () => {
     if (item.percent_change_1h > 0) {
       return require("../../assets/arrow_up.png");
@@ -12,7 +19,7 @@ const CoinsItem = ({ item }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container}>
       <View style={styles.row}>
         <Text style={styles.symbolText}>${item.symbol}</Text>
         <Text style={styles.nameText}>{item.name}</Text>
@@ -20,10 +27,18 @@ const CoinsItem = ({ item }) => {
       </View>
 
       <View style={styles.row}>
-        <Text style={styles.percentText}>{item.percent_change_1h}</Text>
+        <Text
+          style={
+            item.percent_change_1h > 0
+              ? styles.textPercentGreen
+              : styles.textPercentRed
+          }
+        >
+          {item.percent_change_1h}
+        </Text>
         <Image style={styles.imageIcon} source={getImageArrow()} />
       </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -35,6 +50,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.zircon,
     borderBottomWidth: 1,
     marginLeft: Platform.OS == "ios" ? 16 : 0,
+    paddingLeft: Platform.OS == "ios" ? 0 : 16,
   },
   row: {
     flexDirection: "row",
@@ -54,8 +70,13 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 14,
   },
-  percentText: {
-    color: "#fff",
+  textPercentGreen: {
+    color: Colors.green,
+    fontSize: 12,
+    marginRight: 12,
+  },
+  textPercentRed: {
+    color: Colors.red,
     fontSize: 12,
     marginRight: 12,
   },
