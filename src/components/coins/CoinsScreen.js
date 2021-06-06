@@ -1,14 +1,15 @@
-import React, { Component } from "react";
 import {
-  View,
   ActivityIndicator,
   FlatList,
-  Text,
   StyleSheet,
+  Text,
+  View,
 } from "react-native";
-import Http from "../../libs/http";
+import React, { Component } from "react";
+
 import CoinsItem from "./CoinsItem";
 import Colors from "../../res/colors";
+import Http from "../../libs/http";
 
 class CoinsScreen extends Component {
   state = {
@@ -18,7 +19,9 @@ class CoinsScreen extends Component {
 
   componentDidMount = async () => {
     this.setState({ loading: true });
-    const res = await Http.intance.get("https://api.coinlore.net/api/tickers/");
+    const res = await Http.instance.get(
+      "https://api.coinlore.net/api/tickers/"
+    );
     this.setState({ coins: res.data, loading: false });
   };
 

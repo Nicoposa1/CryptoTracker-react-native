@@ -1,5 +1,5 @@
 class Http {
-  static intance = new Http();
+  static instance = new Http();
   get = async (url) => {
     try {
       let req = await fetch(url);
