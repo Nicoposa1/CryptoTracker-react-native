@@ -14,19 +14,20 @@ const CoinDetailScreen = ({ item }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgba(0, 0, 0, 0.1)",
-    color: Colors.zircon,
+    backgroundColor: "rgba(0,0,0, 0.1)",
+    borderColor: Colors.zircon,
     borderWidth: 1,
     padding: 16,
     marginRight: 8,
     alignItems: "center",
+    justifyContent: "center",
   },
   nameText: {
+    color: "#fff",
     fontWeight: "bold",
-    color: Colors.white,
   },
   priceText: {
-    color: Colors.white,
+    color: "#fff",
   },
 });
 
